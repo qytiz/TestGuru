@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_160920) do
+ActiveRecord::Schema.define(version: 2020_12_10_151817) do
 
   create_table "answers", force: :cascade do |t|
-    t.string "a_title", null: false
-    t.boolean "a_correct", default: false
-    t.integer "q_id", null: false
+    t.string "title", null: false
+    t.boolean "correct", default: false
+    t.integer "question", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2020_12_11_160920) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "q_title", null: false
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,15 +35,15 @@ ActiveRecord::Schema.define(version: 2020_12_11_160920) do
   create_table "tests", force: :cascade do |t|
     t.string "title", null: false
     t.integer "level", default: 0
-    t.integer "c_id", null: false
+    t.integer "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "t_created"
-    t.integer "t_complited"
+    t.integer "created"
+    t.integer "complited"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -3,9 +3,11 @@ class CreateTests < ActiveRecord::Migration[6.0]
     create_table :tests do |t|
       t.string :title
       t.integer :level
-      t.integer :c_id
-
+      t.integer :category
       t.timestamps
     end
+    change_column_null(:tests, :title, false)
+    change_column_null(:tests, :id, false)  
+    change_column_default(:tests, :level, 0)
   end
 end
