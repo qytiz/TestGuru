@@ -65,4 +65,5 @@ ActiveRecord::Schema.define(version: 20_201_218_160_838) do
   add_foreign_key 'questions', 'tests', column: 'tests_id'
   add_foreign_key 'tests', 'categories', column: 'categories_id'
   add_foreign_key 'tests', 'users', column: 'users_id'
+
 end
