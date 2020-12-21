@@ -10,59 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_218_160_838) do
-  create_table 'answers', force: :cascade do |t|
-    t.string 'title', null: false
-    t.boolean 'correct', default: false
-    t.integer 'questions_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['questions_id'], name: 'index_answers_on_questions_id'
+ActiveRecord::Schema.define(version: 2020_12_21_121848) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'categories', force: :cascade do |t|
-    t.string 'title', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "questions", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "tests_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tests_id"], name: "index_questions_on_tests_id"
   end
 
-  create_table 'complited_history_tests', force: :cascade do |t|
-    t.boolean 'complited', default: false
-    t.integer 'user_id', null: false
-    t.integer 'test_id', null: false
-    t.index ['test_id'], name: 'index_complited_history_tests_on_test_id'
-    t.index ['user_id'], name: 'index_complited_history_tests_on_user_id'
+  create_table "test_passages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "test_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_test_passages_on_test_id"
+    t.index ["user_id"], name: "index_test_passages_on_user_id"
   end
 
-  create_table 'questions', force: :cascade do |t|
-    t.string 'title', null: false
-    t.integer 'tests_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['tests_id'], name: 'index_questions_on_tests_id'
+  create_table "tests", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "level", default: 0
+    t.integer "categories_id", null: false
+    t.integer "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["categories_id"], name: "index_tests_on_categories_id"
+    t.index ["users_id"], name: "index_tests_on_users_id"
   end
 
-  create_table 'tests', force: :cascade do |t|
-    t.string 'title', null: false
-    t.integer 'level', default: 0
-    t.integer 'categories_id', null: false
-    t.integer 'users_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['categories_id'], name: 'index_tests_on_categories_id'
-    t.index ['users_id'], name: 'index_tests_on_users_id'
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-  end
-
-  add_foreign_key 'answers', 'questions', column: 'questions_id'
-  add_foreign_key 'complited_history_tests', 'tests'
-  add_foreign_key 'complited_history_tests', 'users'
-  add_foreign_key 'questions', 'tests', column: 'tests_id'
-  add_foreign_key 'tests', 'categories', column: 'categories_id'
-  add_foreign_key 'tests', 'users', column: 'users_id'
+  add_foreign_key "questions", "tests", column: "tests_id"
+  add_foreign_key "test_passages", "tests"
+  add_foreign_key "test_passages", "users"
+  add_foreign_key "tests", "categories", column: "categories_id"
+  add_foreign_key "tests", "users", column: "users_id"
 end

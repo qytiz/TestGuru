@@ -1,2 +1,0 @@
-class ComplitedHistoryTest < ApplicationRecord
-end
