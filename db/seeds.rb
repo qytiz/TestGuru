@@ -5,29 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 return if Category.exists?
 
 categories = Category.create!([
   {title: 'RUBY'}
   {title: 'HTML'}
   ])
-user = User.create!([
+users = User.create!([
   {name: '1User'}
   {name: '2User'}
   ])
-test = Test.create!([
-  {level: 1, title: 'RUBY-TEST', categories_id: 1, users_id: 1}
-  {level:0,title:'HTML-TEST',categories_id:2,user_id:2}
+tests = Test.create!([
+  {level: 1, title: 'RUBY-TEST', categories_id: categories.first.id, users_id: users.first.id}
+  {level:0,title:'HTML-TEST',categories_id:categories.last.id,user_id:users.last.id}
   ])
-question = Question.create!([
-  {title: 'Вопрос 1', tests_id: 1}
-  {title: 'Вопрос 2', tests_id:2}
+questions = Question.create!([
+  {title: 'Вопрос 1', tests_id: tests.first.id}
+  {title: 'Вопрос 2', tests_id: tests.last.id}
   ])
-answer = Answer.create!([
-  {title: 'Ответ', correct: true, questions_id: 1}
-  {title: 'НЕ Ответ', correct: false, questions_id: 1}
-  {title: 'НЕ Ответ', correct: false, questions_id: 1}
-  {title: 'НЕ Ответ', correct: false, questions_id: 2}
-  {title: 'Ответ', correct: true, questions_id: 2}
-  {title: 'НЕ Ответ', correct: false, questions_id: 2}
+answers = Answer.create!([
+  {title: 'Ответ', correct: true, questions_id: questions.first.id}
+  {title: 'НЕ Ответ', correct: false, questions_id: questions.first.id}
+  {title: 'НЕ Ответ', correct: false, questions_id: questions.first.id}
+  {title: 'НЕ Ответ', correct: false, questions_id: questions.last.id}
+  {title: 'Ответ', correct: true, questions_id: questions.last.id}
+  {title: 'НЕ Ответ', correct: false, questions_id: questions.last.id}
   ])
