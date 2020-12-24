@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Test < ApplicationRecord
   def self.tests_with_category(category)
     joins('JOIN categories ON test.category_id = categories_id')
@@ -11,4 +13,5 @@ class Test < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :test_passeges, dependent: :destroy
   has_many :passing_users, through: :test_passeges, source: :user
+
 end

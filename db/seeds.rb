@@ -17,6 +17,7 @@ users = User.create!([
   {name: '2User'}
   ])
 tests = Test.create!([
+
   {level: 1, title: 'RUBY-TEST', category_id: categories.first.id, user_id: users.first.id}
   {level:0,title:'HTML-TEST',category_id:categories.last.id,user_id:users.last.id}
   ])
@@ -31,4 +32,6 @@ answers = Answer.create!([
   {title: 'НЕ Ответ', correct: false, question_id: questions.last.id}
   {title: 'Ответ', correct: true, question_id: questions.last.id}
   {title: 'НЕ Ответ', correct: false, question_id: questions.last.id}
+
+ 
   ])
