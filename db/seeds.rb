@@ -17,18 +17,24 @@ users = User.create!([
   {name: '2User'}
   ])
 tests = Test.create!([
-  {level: 1, title: 'RUBY-TEST', categories_id: categories.first.id, users_id: users.first.id}
-  {level:0,title:'HTML-TEST',categories_id:categories.last.id,user_id:users.last.id}
+
+  {level: 1, title: 'RUBY-TEST', category: categories.first, user: users.first}
+  {level:0,title:'HTML-TEST',category:categories.last,user:users.last
+
   ])
 questions = Question.create!([
-  {title: 'Вопрос 1', tests_id: tests.first.id}
-  {title: 'Вопрос 2', tests_id: tests.last.id}
+  {title: 'Вопрос 1', test: tests.first}
+  {title: 'Вопрос 2', test: tests.last}
   ])
 answers = Answer.create!([
-  {title: 'Ответ', correct: true, questions_id: questions.first.id}
-  {title: 'НЕ Ответ', correct: false, questions_id: questions.first.id}
-  {title: 'НЕ Ответ', correct: false, questions_id: questions.first.id}
-  {title: 'НЕ Ответ', correct: false, questions_id: questions.last.id}
-  {title: 'Ответ', correct: true, questions_id: questions.last.id}
-  {title: 'НЕ Ответ', correct: false, questions_id: questions.last.id}
+
+  {title: 'Ответ', correct: true, question_id: questions.first.id}
+  {title: 'НЕ Ответ', correct: false, question_id: questions.first.id}
+  {title: 'НЕ Ответ', correct: false, question_id: questions.first.id}
+  {title: 'НЕ Ответ', correct: false, question_id: questions.last.id}
+  {title: 'Ответ', correct: true, question_id: questions.last.id}
+  {title: 'НЕ Ответ', correct: false, question_id: questions.last.id}
+
+ 
+
   ])
