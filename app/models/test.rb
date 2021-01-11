@@ -8,12 +8,16 @@ class Test < ApplicationRecord
   has_many :test_passeges, dependent: :destroy
   has_many :passing_users, through: :test_passeges, source: :user
 
+  validates :title, :level, presence: true
+  validates :level, numericality: { only_integer: true, greater_than: 0 }
+  validates :title, uniqueness: { scope: :level, message: 'Идентичный тест уже существует' }
+
+  scope :easy, -> {where(level: (0..1))} 
+  scope :medium, -> {where(level: (2..4))} 
+  scope :hard, -> {where(level: (5..Float::INFINITY))}
+  scope :from_category, ->(category) { joins(:category).where(categories: { title: category }).order(title: :desc)) }
 
   def self.tests_with_category(category)
-    joins('JOIN categories ON test.category_id = categories_id')
-      .where(categories: { title: category })
-      .order(title: :desc)
-      .pluck(:title)
+    Test.from_category(category).pluck(:title)
   end
-
 end
