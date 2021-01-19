@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module TestGuru
-
-  VERSION = '0.6.0'.freeze
+ 
+  VERSION = '0.6.1'
 
 end

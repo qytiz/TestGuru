@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    render inline: "<li> <%= @question.title %> </li>"
+    render inline: '<li> <%= @question.title %> </li>'
   end
 
   def new
@@ -27,10 +27,11 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-     @question.destroy
+    @question.destroy
   end
 
   private
+
   def question_params
     params.require(:question).permit(:title)
   end
@@ -44,8 +45,6 @@ class QuestionsController < ApplicationController
   end
 
   def rescue_question_not_found
-    render plain: "Question not found"
+    render plain: 'Question not found'
   end
 end
-
-
