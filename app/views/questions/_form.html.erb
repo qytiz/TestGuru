@@ -5,12 +5,6 @@
     <%= form.text_field :title, id:"test_title"%>
     </p>
     
-    <p>
-    <%= form.label :test_id %><br>
-    <% options = options_from_collection_for_select(@tests, 'id', 'title') %>
-    <%= form.select :test_id, options %>
-    </p>
-
     <%= form.submit %>
 
 <% end %>
