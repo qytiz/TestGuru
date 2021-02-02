@@ -11,13 +11,13 @@ class TestsController < ApplicationController
   def new
     @test = Test.new
     @categories=Category.all
-    @users=User.all
+    @users=User.all #TODO После создания авторизации переделать на авто выбор 
   end
 
   def create
     @test = Test.new(test_params)
 
-    if @test.save!
+    if @test.save
       redirect_to @test
     else
       render :new
@@ -27,7 +27,6 @@ class TestsController < ApplicationController
   def edit
     @test=Test.find(params[:id])
     @categories=Category.all
-    @users=User.all
   end
 
   def update
