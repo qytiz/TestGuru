@@ -1,0 +1,27 @@
+<%= form_with model: @test do |form| %>
+    
+    <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, id:"test_title"%>
+    </p>
+    
+    <p>
+    <%= form.label :level %><br>
+    <%= form.number_field :level %>
+    </p>
+    
+    <p>
+    <%= form.label :category_id %><br>
+    <% options = options_from_collection_for_select(@categories, 'id', 'title') %>
+    <%= form.select :category_id, options %>
+    </p>
+
+    <p>
+    <%= form.label :user_id %><br>
+    <% options = options_from_collection_for_select(@users, 'id', 'name') %>
+    <%= form.select :user_id, options %>
+    </p>
+
+    <%= form.submit %>
+
+<% end %>
