@@ -11,13 +11,18 @@
 <% if @test.questions.count > 0 %>
 <h1>Questions</h1>
 <%= link_to 'Create new question', new_test_question_path(@test)  %>
-<table>
-    <tr>
-        <th>Title</th>
-        <th colspan='3'>Actions</th>
-    </tr>
-    <%= render @test.questions %>
-</table>
+    <table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th colspan='3'>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= render @test.questions %>
+    </tbody>
+    </table>
 <%end%>
+
 <%= link_to 'Edit', edit_test_path(@test)  %>
 <%= link_to 'Back', tests_path  %>

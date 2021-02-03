@@ -12,7 +12,6 @@ class Test < ApplicationRecord
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :title, uniqueness: { scope: :level, message: 'Идентичный тест уже существует' }
 
-
   scope :easy, -> { where(level: (0..1)) }
   scope :medium, -> { where(level: (2..4)) }
   scope :hard, -> { where(level: (5..Float::INFINITY)) }

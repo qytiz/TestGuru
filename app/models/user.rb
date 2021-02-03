@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :ended_on_level, ->(level) { joins(:test_passages).where(tests: { level: level }, test_passages: { user_id: id }) }
+  scope :ended_on_level, lambda { |level|
+                           joins(:test_passages).where(tests: { level: level }, test_passages: { user_id: id })
+                         }
 end

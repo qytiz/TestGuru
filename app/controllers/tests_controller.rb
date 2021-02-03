@@ -1,5 +1,6 @@
-class TestsController < ApplicationController
+# frozen_string_literal: true
 
+class TestsController < ApplicationController
   def index
     @tests = Test.all
   end
@@ -7,11 +8,11 @@ class TestsController < ApplicationController
   def show
     @test = Test.find(params[:id])
   end
-  
+
   def new
     @test = Test.new
-    @categories=Category.all
-    @users=User.all #TODO После создания авторизации переделать на авто выбор 
+    @categories = Category.all
+    @users = User.all # TODO: После создания авторизации переделать на авто выбор
   end
 
   def create
@@ -23,23 +24,23 @@ class TestsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
-    @test=Test.find(params[:id])
-    @categories=Category.all
+    @test = Test.find(params[:id])
+    @categories = Category.all
   end
 
   def update
-    @test=Test.find(params[:id])
+    @test = Test.find(params[:id])
     if @test.update(test_params)
       redirect_to @test
-    else 
+    else
       render :edit
     end
   end
-  
+
   def destroy
-    @test=Test.find(params[:id])
+    @test = Test.find(params[:id])
 
     @test.destroy
     redirect_to tests_path
