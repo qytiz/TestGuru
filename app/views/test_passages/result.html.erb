@@ -4,8 +4,8 @@
 
 <% if @test_passage.success? %>
 
-  <p style="color:green"> You have passed <%= @test_passage.success_rate %>% of test</p>
+  <p> You have passed <span style="color:green"><%= @test_passage.success_rate %>%</span> of test</p>
 <% else %>
-  <p style="color:red"> You have not passed <%= @test_passage.success_rate %>% of test</p>
+  <p> You have not passed <span style="color:green"><%= @test_passage.success_rate %>%</span> of test</p>
 <% end %>
 <p><%= link_to 'Back', tests_path %></p>
