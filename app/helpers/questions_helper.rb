@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module QuestionsHelper
-  def question_header(question)
+  def question_header(test)
     if question.persisted?
-      "Edit #{question.title} Question"
+      "Edit #{test.title} Question"
     else
-      "Create New #{question.title} Question"
+      "Create New #{test.title} Question"
     end
   end
 end
