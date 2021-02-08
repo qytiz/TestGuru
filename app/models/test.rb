@@ -5,13 +5,12 @@ class Test < ApplicationRecord
   belongs_to :category
 
   has_many :questions, dependent: :destroy
-  has_many :test_passeges, dependent: :destroy
-  has_many :passing_users, dependent: :destroy, through: :test_passeges, source: :user
+  has_many :test_passages, dependent: :destroy
+  has_many :passing_users, through: :test_passages, source: :user
 
   validates :title, :level, presence: true
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :title, uniqueness: { scope: :level, message: 'Идентичный тест уже существует' }
-
 
   scope :easy, -> { where(level: (0..1)) }
   scope :medium, -> { where(level: (2..4)) }
