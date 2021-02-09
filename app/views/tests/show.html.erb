@@ -8,7 +8,7 @@
 <%= @test.level %>
 </p>
 
-<% @test.question.present? %>
+<%if @test.questions.present? %>
 <h1>Questions</h1>
 <%= link_to 'Create new question', new_test_question_path(@test)  %>
     <table>
