@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     unless current_user
       cookies[:return_to] = request.original_url
-      cookies[:return_to_method] = request.method.to_sym
-      redirect_to login_path
+      redirect_to login_path, alert: "Please,log in to get access to resources"
     end
   end
 
@@ -24,6 +23,8 @@ class ApplicationController < ActionController::Base
   end
 
   def return_page
-    cookies[:return_to] || root_path
+    return_to=cookies[:return_to] || tests_path
+    cookies.delete(:return_to)
+    return_to
   end
 end
