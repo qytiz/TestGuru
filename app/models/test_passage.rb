@@ -37,7 +37,7 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    self.correct_answers.ids.sort == answer_ids.map(&:to_i).sort
+    correct_answers.ids.sort == answer_ids.map(&:to_i).sort
   end
 
   def before_validation_set_first_question
@@ -45,7 +45,6 @@ class TestPassage < ApplicationRecord
   end
 
   def before_update_set_next_question
-
-    self.current_question = test.questions.order(:id).where('id > ?', self.current_question.id).first
+    self.current_question = test.questions.order(:id).where('id > ?', current_question.id).first
   end
 end

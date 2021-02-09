@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_test, only: %i[show edit update destroy start]
   before_action :set_user, only: :start
 
@@ -13,13 +14,12 @@ class TestsController < ApplicationController
   def new
     @test = Test.new
     @categories = Category.all
-    @users = User.all # TODO: После создания авторизации переделать на авто выбор
   end
 
   def create
     @test = Test.new(test_params)
-
-    if @test.save
+    @test.user_id = current_user.id
+    if @test.save!
       redirect_to @test
     else
       render :new

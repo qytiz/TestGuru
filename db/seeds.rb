@@ -15,8 +15,8 @@ categories = Category.create!([
                                 { title: 'HTML' }
                               ])
 users = User.create!([
-                       { name: '1User' },
-                       { name: '2User' }
+                       { name: '1User', email:example@example.com, password:example },
+                       { name: '2User', email:example@example.com, password:example }
                      ])
 tests = Test.create!([
                        { level: 1, title: 'RUBY-TEST', category_id: categories.first.id, user_id: users.first.id },
