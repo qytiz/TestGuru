@@ -23,8 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def return_page
-    return_to=cookies[:return_to] || tests_path
-    cookies.delete(:return_to)
-    return_to
+    cookies.delete(:return_to)|| tests_path
   end
 end

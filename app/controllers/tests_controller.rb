@@ -16,7 +16,8 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = current_user.own_test_build(Test.new(test_params))
+    @test = Test.new(test_params)
+    @test.user_id=current_user.id #RODO Испраить на collection.build 
     if @test.save!
       redirect_to @test
     else
