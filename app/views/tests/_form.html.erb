@@ -15,9 +15,6 @@
     <% options = options_from_collection_for_select(@categories, 'id', 'title') %>
     <%= form.select :category_id, options %>
     </p>
-
-    <%= form.hidden_field :user_id, value:current_user.id%>
-
     
     <%= form.submit %>
 
