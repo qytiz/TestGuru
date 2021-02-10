@@ -16,6 +16,8 @@
     <%= form.select :category_id, options %>
     </p>
 
+    <%= form.hidden_field :user_id, value:current_user.id%>
+
     
     <%= form.submit %>
 
