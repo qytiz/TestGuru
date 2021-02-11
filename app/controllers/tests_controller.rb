@@ -17,7 +17,7 @@ class TestsController < ApplicationController
 
   def create
     @test = current_user.self_tests.build(test_params)
-    if @test.save!
+    if @test.save
       redirect_to @test
     else
       render :new
