@@ -7,10 +7,10 @@
 <strong>Level:</strong>
 <%= @test.level %>
 </p>
-
+<%= link_to 'Create new question', new_test_question_path(@test)  %>
 <%if @test.questions.present? %>
 <h1>Questions</h1>
-<%= link_to 'Create new question', new_test_question_path(@test)  %>
+
     <table>
     <thead>
         <tr>
