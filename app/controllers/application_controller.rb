@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) ||
-      if resource.is_a?(Admin) && resource.can_publish?
-        admin_tests_path
-      else
-        super
-      end
+    if resource.is_a?(Admin)
+     admin_tests_path
+    else
+    stored_location_for(resource)
+    super
+    end
   end
 end
