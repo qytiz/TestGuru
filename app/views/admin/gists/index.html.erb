@@ -1,0 +1,15 @@
+<% if @gists.blank? %>
+  <h1>No gists</h1>
+<% else%>
+<h1>Gists</h1>
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>User name</th>
+      <th>URL</th>
+    </tr>
+
+    <%= render @gists %>
+<% end %>
+
+</table>
