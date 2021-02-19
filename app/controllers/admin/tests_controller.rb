@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Admin::TestsController < Admin::BaseController
-  before_action :set_categories, only: %i[edit]
   before_action :set_tests, only: %i[index update_inline]
   before_action :find_test, only: %i[show edit update destroy start update_inline]
   
@@ -36,6 +35,7 @@ class Admin::TestsController < Admin::BaseController
       render :edit
     end
   end
+  
   def update_inline
     if @test.update(test_params)
       redirect_to admin_tests_path
@@ -54,10 +54,7 @@ class Admin::TestsController < Admin::BaseController
   end
 
   private
-  def set_categories
-    @categories = Category.all
-  end
-  
+
   def set_tests
     @tests=Test.all
   end
