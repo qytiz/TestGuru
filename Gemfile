@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~>4.0'
 gem 'faraday'
 
+gem 'bootstrap'
+gem 'octicons_helper'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
