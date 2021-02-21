@@ -3,7 +3,7 @@
 class TestPassagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_test_passage, only: %i[show result update gist]
-
+  
   def show; end
 
   def result; end
@@ -12,6 +12,10 @@ class TestPassagesController < ApplicationController
     @test_passage.accept!(params[:answer_ids])
     if @test_passage.complited?
       TestsMailer.completed_test(@test_passage).deliver_now
+      if new_badges?
+        @test_passage.user.badges << new_badges
+        flash[:notice] = 'YAY!You got new badges!'
+      end
       redirect_to result_test_passage_path(@test_passage)
     else
       render :show
@@ -20,7 +24,14 @@ class TestPassagesController < ApplicationController
   
 
   private
+  
+  def new_badges?
+    new_badges.length >= 1
+  end
 
+  def new_badges
+    @new_bages=BadgesService.new(@test_passage).new_earned_badges
+  end
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
   end

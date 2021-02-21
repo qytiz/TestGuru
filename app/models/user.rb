@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :self_tests, class_name: 'Test', foreign_key: :user_id, dependent: :nullify
   has_many :test_passages, dependent: :destroy
   has_many :tests, dependent: :destroy, through: :test_passages
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges
 
   def ended_on_level(level)
     tests.where(level: level)

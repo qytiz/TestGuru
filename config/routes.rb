@@ -12,8 +12,12 @@ Rails.application.routes.draw do
       post :start
     end
   end
+
+  resources :badges, only: :index
+
   namespace :admin do
     root 'admin/tests#index'
+    resources :badges
     resources :tests do
       patch :update_inline, on: :member
       resources :questions, shallow: true, except: :index do
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :gists, only: :index
   end
+
   resources :test_passages, only: %i[show update] do
     member do
       resources :gists, only: :create

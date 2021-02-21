@@ -1,0 +1,16 @@
+<h1>Your badges</h1>
+
+<ul>
+  <%= render @earned_badges %>
+</ul>
+<br />
+
+<h1>Not get yet!</h1>
+
+<ul>
+  <%= render @other_badges %>
+</ul>
+
+<p>
+  <%= link_to t(:back), tests_path %>
+</p> 

@@ -1,12 +1,12 @@
 document.addEventListener('turbolinks:load',function(){
-  let progressBar=document.querySelector('.progress-bar')
-  let question=document.querySelector('.question-number')
+  const progressBar=document.querySelector('.progress-bar')
+  const question=document.querySelector('.question-number')
   if(progressBar)
   {
-    let questionNumber= question.dataset.questionNumber
-    let totalQuestions= question.dataset.questionsTotal
+    const questionNumber= question.dataset.questionNumber
+    const totalQuestions= question.dataset.questionsTotal
     let passdiv=document.createElement('div');
-    let i=0;
+    let i= 0;
     let passWidth = 0
     passdiv.className= 'passed';
     do{
