@@ -8,9 +8,11 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
 
   before_update :before_update_set_next_question
+  scope :success, -> { where('total_score >= ?', 85) }
 
   def accept!(answer_ids)
     self.correct_questions += 1 if correct_answer?(answer_ids)
+    self.total_score=success_rate
     save!
   end
 
@@ -27,9 +29,8 @@ class TestPassage < ApplicationRecord
   end
 
   def number_of_current_question
-    self.test.questions.index(current_question)+1
+    self.test.questions.index(current_question) + 1
   end
-
   private
 
   def correct_answers
@@ -37,7 +38,9 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
+    if (answer_ids.present?)
     correct_answers.ids.sort == answer_ids.map(&:to_i).sort
+    end
   end
 
   def before_validation_set_first_question

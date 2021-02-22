@@ -50,6 +50,9 @@ en:
     success: "Gist was successfully created! <a href='%{url}'>Gist</a>"
     failure: "An error occured while saving gist"
     description: "A question about %{title} from TestGuru"
+  
+  test_passage:
+    new_badges: "YAY!You got new badges!"
 
   admin:
     tests:

@@ -1,0 +1,11 @@
+<h2><%= @badge.title %></h2>
+
+<p>
+  image: <%= @badge.image_link %><br>
+  rule: <%= @badge.badge_rule%><br>
+  options: <%=@badge.option%>
+</p>
+
+<%= link_to 'Edit', edit_admin_badge_path(@badge) %> |
+<%= link_to 'Back', admin_badges_path() %> |
+<%= link_to "Delete #{@badge.title} answer", admin_answer_path(@badge), method: :delete %><br>
