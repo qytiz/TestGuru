@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-
+require("packs/utilites/timer.js")
 require("packs/utilites/sorting.js")
 require("packs/utilites/confirming.js")
 require("packs/utilites/form_inline.js")

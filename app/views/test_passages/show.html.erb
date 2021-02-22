@@ -5,7 +5,11 @@
 <h2>
   <%= @test_passage.current_question.title %>
 </h2>
-
+<%if (@test_passage.end_at.present?)%>
+  <h3>
+    Time left:<%= content_tag :span,(@test_passage.end_at-Time.now).round, class: 'timer'%>
+  </h3>
+<%end%>
 <p>
   <%= content_tag :span,@test_passage.number_of_current_question, class: 'question-number', data:{question_number:@test_passage.number_of_current_question,questions_total:@test_passage.test.questions.count} %> of <%= @test_passage.test.questions.count %> questions
 </p>

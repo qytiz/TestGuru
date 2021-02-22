@@ -16,6 +16,11 @@
   <%= form.select :category_id, options %>
   </p>
   
+  <p>
+  <%= form.label :timer_in_minutes %><br>
+  <%= form.number_field :timer_in_minutes %>
+  </p>
+
   <%= form.submit %>
 
 <% end %>
