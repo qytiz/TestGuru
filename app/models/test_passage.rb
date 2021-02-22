@@ -8,8 +8,8 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
   before_create :before_create_set_timer
   before_update :before_update_set_next_question
-  scope :success, -> { where('total_score >= ?', 85) }
-
+  scope :success, -> { where('total_score >= ?', SUCESS_SCORE) }
+  SUCESS_SCORE=85
   def accept!(answer_ids)
     if time_over?
       self.current_question=nil
@@ -25,7 +25,7 @@ class TestPassage < ApplicationRecord
   end
 
   def success?
-    success_rate >= 85
+    success_rate >= SUCESS_SCORE
   end
 
   def success_rate
@@ -48,17 +48,13 @@ class TestPassage < ApplicationRecord
   end
   
   def time_over?
-    if end_at.present?
-      end_at.past?
-    else
-      false
-    end
+    end_at.past? if end_at.present?
   end
 
   def before_create_set_timer
-    self.started_at=Time.now
+    self.started_at = Time.now
     if test.timer_in_minutes.present?
-      self.end_at=self.started_at+test.timer_in_minutes*60
+      self.end_at = self.started_at + test.timer_in_minutes * 60
     end
   end
   

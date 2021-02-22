@@ -7,7 +7,7 @@
 </h2>
 <%if (@test_passage.end_at.present?)%>
   <h3>
-    Time left:<%= content_tag :span,(@test_passage.end_at-Time.now).round, class: 'timer'%>
+    Time left:<%= content_tag :span,(@test_passage.end_at-Time.now).round, id: 'timer'%>
   </h3>
 <%end%>
 <p>
