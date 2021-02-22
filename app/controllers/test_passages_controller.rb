@@ -14,7 +14,7 @@ class TestPassagesController < ApplicationController
       TestsMailer.completed_test(@test_passage).deliver_now
       if new_badges?
         @test_passage.user.badges << new_badges
-        flash[:notice] = 'YAY!You got new badges!'
+        flash[:notice] = t('new_badges')
       end
       redirect_to result_test_passage_path(@test_passage)
     else
@@ -30,8 +30,9 @@ class TestPassagesController < ApplicationController
   end
 
   def new_badges
-    @new_bages=BadgesService.new(@test_passage).new_earned_badges
+    @new_bages ||= BadgesService.new(@test_passage).new_earned_badges
   end
+
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
   end

@@ -30,6 +30,9 @@ ru:
       form_inline:
         submit: "OK"
 
+  test_passage:
+    new_badges: "УРА!Вы получили новые достижения!"
+
   tests_mailer:
     completed_tests:
       subject: "Вы успешно завершили тест на TestGuru"
