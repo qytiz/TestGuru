@@ -6,22 +6,26 @@ class TestPassage < ApplicationRecord
   belongs_to :current_question, class_name: 'Question', optional: true
 
   before_validation :before_validation_set_first_question, on: :create
-
+  before_create :before_create_set_timer
   before_update :before_update_set_next_question
-  scope :success, -> { where('total_score >= ?', 85) }
-
+  scope :success, -> { where('total_score >= ?', SUCESS_SCORE) }
+  SUCESS_SCORE=85
   def accept!(answer_ids)
+    if time_over?
+      self.current_question=nil
+      return
+    end
     self.correct_questions += 1 if correct_answer?(answer_ids)
     self.total_score=success_rate
     save!
   end
 
   def complited?
-    current_question.nil?
+    time_over? || current_question.nil?
   end
 
   def success?
-    success_rate >= 85
+    success_rate >= SUCESS_SCORE
   end
 
   def success_rate
@@ -42,7 +46,18 @@ class TestPassage < ApplicationRecord
     correct_answers.ids.sort == answer_ids.map(&:to_i).sort
     end
   end
+  
+  def time_over?
+    end_at.past? if end_at.present?
+  end
 
+  def before_create_set_timer
+    self.started_at = Time.now
+    if test.timer_in_minutes.present?
+      self.end_at = self.started_at + test.timer_in_minutes * 60
+    end
+  end
+  
   def before_validation_set_first_question
     self.current_question = test.questions.first if test.present?
   end
